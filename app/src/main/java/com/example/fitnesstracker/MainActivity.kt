@@ -1,5 +1,6 @@
   package com.example.fitnesstracker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
@@ -14,6 +15,8 @@ import android.widget.LinearLayout
         layoutButton = findViewById(R.id.lyt_imc)
         layoutButton.setOnClickListener{
             // navegar para a proxima tela
+            val intent = Intent(this, ImcActivity::class.java)
+            startActivity(intent)
         }
     }
 }
