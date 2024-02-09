@@ -1,59 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/btn_"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".ImcActivity">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/txt_imcdesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/default_margin_horizontal"
-            android:layout_marginVertical="@dimen/default_margin_vertical"
             android:text="@string/imc_desc"
-            android:textAlignment="viewStart"
-            android:textSize="@dimen/text_size"
-            android:textStyle="bold" />
+            style="@style/texts" />
+
 
         <EditText
             android:id="@+id/edtxt_imc_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/default_margin_horizontal"
             android:hint="@string/height_meters"
-            android:inputType="numberDecimal"
-            android:maxLength="@dimen/maxSize"
-            android:textSize="@dimen/text_size" />
+            style="@style/edit_text" />
 
         <EditText
             android:id="@+id/edtxt_imc_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/default_margin_horizontal"
-            android:layout_marginVertical="@dimen/default_margin_vertical"
             android:hint="@string/weight_kg"
-            android:inputType="numberDecimal"
-            android:maxLength="@dimen/maxSize"
-            android:textSize="@dimen/text_size" />
+            style="@style/edit_text"  />
 
 
         <Button
             android:id="@+id/btn_calculate_imc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/icons_green"
-            android:paddingHorizontal="@dimen/default_padding_button"
-            android:text="@string/calculate_imc" />
+            android:text="@string/calculate_imc"
+            style="@style/buttons" />
 
     </LinearLayout>
 </ScrollView>
