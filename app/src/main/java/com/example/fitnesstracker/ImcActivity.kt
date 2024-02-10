@@ -1,7 +1,10 @@
 package com.example.fitnesstracker
 
+import android.content.Context
+import android.inputmethodservice.InputMethodService
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -22,12 +25,12 @@ class ImcActivity : AppCompatActivity() {
         editHeight = findViewById(R.id.edtxt_imc_height)
 
         calculateImcButton.setOnClickListener{
-            setListener()
+            calculateImc()
         }
 
     }
 
-    private fun setListener() {
+    private fun calculateImc() {
         val weight = editWeight.text.toString()
         val height = editHeight.text.toString()
         val result: Double
@@ -35,7 +38,7 @@ class ImcActivity : AppCompatActivity() {
             makeToast(R.string.warning)
             return
         } else {
-            result = calcularImc(weight.toDouble(), height.toDouble())
+            result = imcCalculator(weight.toDouble(), height.toDouble())
 
             AlertDialog.Builder(this).apply {
                 setTitle(getString(R.string.your_imc_is, result))
@@ -44,6 +47,10 @@ class ImcActivity : AppCompatActivity() {
                 create()
                 show()
             }
+
+            // InputMethodManager - gerenciador de input do teclado
+            val service = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            service.hideSoftInputFromWindow(currentFocus?.windowToken,0)
         }
     }
 
@@ -54,7 +61,7 @@ class ImcActivity : AppCompatActivity() {
     private fun makeToast(id: Int) {
         Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
     }
-    private fun calcularImc(weight: Double, height: Double): Double {
+    private fun imcCalculator(weight: Double, height: Double): Double {
         return weight/((height/100).pow(2))
     }
 
