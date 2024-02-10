@@ -2,11 +2,11 @@ package com.example.fitnesstracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import kotlin.math.pow
 
 class ImcActivity : AppCompatActivity() {
@@ -27,16 +27,23 @@ class ImcActivity : AppCompatActivity() {
 
     }
 
-    fun setListener() {
+    private fun setListener() {
         val weight = editWeight.text.toString()
         val height = editHeight.text.toString()
-        var result: Double
-        if (!validate(weight,height)) {
+        val result: Double
+        if (!validate(weight, height)) {
             makeToast(R.string.warning)
             return
         } else {
             result = calcularImc(weight.toDouble(), height.toDouble())
-            makeToast(imcResponse(result))
+
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.your_imc_is, result))
+                setMessage(imcResponse(result))
+                setPositiveButton(android.R.string.ok) { _, _ -> }
+                create()
+                show()
+            }
         }
     }
 

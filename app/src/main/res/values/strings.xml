@@ -7,10 +7,12 @@
     <string name="height">Altura (cm)</string>
     <string name="weight_kg">Peso (kg)</string>
     <string name="calculate_imc">Calcular IMC</string>
-    <string name="warning">Todos os campos devem ser maiores que zero!.</string>
+    <string name="warning">Todos os campos devem ser maiores que zero.</string>
     <string name="imc_low_weight">Abaixo do peso</string>
     <string name="imc_normal">Normal</string>
     <string name="imc_overweight">Acima do peso</string>
     <string name="imc_obesity_one">Obesidade Grau I</string>
     <string name="imc_several_obesity">Obesidade Extrema</string>
+    <string name="your_imc_is">Seu imc é: %.2f</string>
+
 </resources>
