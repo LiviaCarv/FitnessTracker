@@ -1,17 +1,19 @@
   package com.example.fitnesstracker
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-  class MainActivity : AppCompatActivity() {
+  class MainActivity : AppCompatActivity(), OnItemClickListener {
       private lateinit var rvMain: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,20 +38,32 @@ import androidx.recyclerview.widget.RecyclerView
             )
         )
 
-        val adapter = MainAdapter(mainItems)
+        val adapter = MainAdapter(mainItems,this)
         rvMain = findViewById(R.id.rv_main)
         // conecta o adaptador à RecyclerView para que ele possa fornecer os dados e
         // gerenciar a exibição dos itens na lista.
         rvMain.adapter = adapter
 
         // responsável por organizar os itens em uma lista linear
-        rvMain.layoutManager = LinearLayoutManager(this)
+        rvMain.layoutManager = GridLayoutManager(this, 2)
 
     }
 
+      override fun onClick(id: Int) {
+        when(id) {
+            1 -> {
+                val intent = Intent(this, ImcActivity::class.java)
+                startActivity(intent)
+            }
+            2 -> {
+                //outra atividade
+            }
+        }
+      }
+
       // Responsável por ligar os dados dinamicos aos elementos visuais exibidos no RV
       // <MainViewHolder> especifica o tipo de ViewHolder que este adapter irá usar.
-      private inner class MainAdapter(private val mainItems: List<MainItem>) : RecyclerView.Adapter<MainViewHolder>() {
+      private inner class MainAdapter(private val mainItems: List<MainItem>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
           // chamado quando o RecyclerView precisa criar uma nova instância de MainViewHolder.
           // infla o layout XML da célula específica que será usada para exibir os dados.
           override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -69,20 +83,26 @@ import androidx.recyclerview.widget.RecyclerView
               holder.bind(currentItem)
           }
 
-      }
+          // classe que define a célula individual dentro da RecyclerView, mas nao tem dados associados a ele
+          // o RecyclerView que vai vincular os dados
+          private inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+              fun bind(item: MainItem) {
+                  val img = itemView.findViewById<ImageView>(R.id.item_img_icon)
+                  val txt = itemView.findViewById<TextView>(R.id.item_txt_name)
+                  val container: LinearLayout = itemView.findViewById(R.id.item_lyt_imc)
 
-      // classe que define a célula individual dentro da RecyclerView, mas nao tem dados associados a ele
-      // o RecyclerView que vai vincular os dados
-      private class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-          fun bind(item: MainItem) {
-              val img = itemView.findViewById<ImageView>(R.id.item_img_icon)
-              val txt = itemView.findViewById<TextView>(R.id.item_txt_name)
-              val container: LinearLayout = itemView as LinearLayout
+                  img.setImageResource(item.drawableId)
+                  txt.setText(item.textStringId)
+                  container.setBackgroundColor(item.color)
 
-              img.setImageResource(item.drawableId)
-              txt.setText(item.textStringId)
-              container.setBackgroundColor(item.color)
+                  container.setOnClickListener{
+                      onItemClickListener.onClick(item.id)
+                  }
+              }
+
           }
 
       }
-}
+
+
+  }
