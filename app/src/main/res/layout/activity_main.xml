@@ -11,31 +11,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/main_item"
+        tools:itemCount="4"/>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/lyt_imc"-->
-<!--        android:background="@color/light_gray"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        android:gravity="center"-->
-<!--        android:padding="10dp">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-
-<!--            tools:srcCompat="@drawable/baseline_auto_awesome_24" />-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/label_imc"-->
-<!--            android:textSize="20dp"-->
-<!--            android:textStyle="bold"/>-->
-
-<!--    </LinearLayout>-->
 
 </LinearLayout>

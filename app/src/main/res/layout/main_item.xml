@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_lyt_imc"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    >
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_item"
+
+    <ImageView
+        android:id="@+id/item_img_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ola mundo" />
+        tools:srcCompat="@drawable/baseline_auto_awesome_24" />
+
+    <TextView
+        android:id="@+id/item_txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_imc" />
+
 
 </LinearLayout>

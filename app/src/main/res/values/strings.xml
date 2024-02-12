@@ -14,5 +14,6 @@
     <string name="imc_obesity_one">Obesidade Grau I</string>
     <string name="imc_several_obesity">Obesidade Extrema</string>
     <string name="your_imc_is">Seu imc é: %.2f</string>
+    <string name="label_tmb">TMB</string>
 
 </resources>
